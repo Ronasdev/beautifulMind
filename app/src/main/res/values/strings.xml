@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">A Beautiful Mind</string>
+    <string name="number_game_played">Number of Games Played: 0</string>
+    <string name="my_score_text">My Score</string>
+    <string name="opponent_score_text">Opponent Score</string>
+    <string name="game_title_text">Now, it\'s your game ...</string>
+    <string name="opponent_strategy_text">Your opponent plays according to this strategy:</string>
+    <string name="strategy_name">Random</string>
+    <string name="a">A</string>
+    <string name="b">B</string>
+    <string name="gameInfo1">Hint: All  returns are givin in the form x/y , where x specifies the reward for you, and y givens the reward for your opponent.</string>
+    <string name="gameInfo2">Hint: My action is specified by the row. The opponent\'s action is given by the column</string>
+    <string name="action_a_btn">CHOOSE ACTION A</string>
+    <string name="action_b_btn">CHOOSE ACTION B</string>
+    <string name="you_choose">You choose: </string>
+    <string name="opponent_choose">Opponent Choose: </string>
+    <string name="you_obtain">You obtain: </string>
+    <string name="opponent_obtains">Opponent obtains: </string>
+    <string name="dismiss_text">DISMISS</string>
+</resources>

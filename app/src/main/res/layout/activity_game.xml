@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/padding_start"
+    android:paddingTop="@dimen/padding_top"
+    android:paddingEnd="@dimen/padding_end"
+    android:paddingBottom="@dimen/padding_bottom"
+    tools:context=".Game">
+
+    <TextView
+        android:id="@+id/gameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/game_title_text"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/strategyTypeTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opponent_strategy_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameTitle"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteY="20dp" />
+    <TextView
+        android:id="@+id/strategy_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/strategyTypeTitleText"
+        android:text="@string/strategy_name"
+        android:textStyle="bold"
+        />
+
+    <TableLayout
+        android:id="@+id/gameTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/strategy_name">
+        <TableRow
+            android:id="@+id/tableRowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#fff" />
+            <TextView
+                android:id="@+id/aCol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#51fb01"
+                android:text="@string/a" />
+
+            <TextView
+                android:id="@+id/bCol"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#fda118"
+                android:text="@string/b" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowA"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/aRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#51fb01"
+                android:text="@string/a"  />
+            <TextView
+                android:id="@+id/utility11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:text="-3 / 3" />
+
+            <TextView
+                android:id="@+id/utility12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:text="-4 / 4" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRowB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/bRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#fda118"
+                android:text="@string/b"  />
+            <TextView
+                android:id="@+id/utility21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:background="#ffc8c8"
+                android:text="-2 / -3" />
+
+            <TextView
+                android:id="@+id/utility22"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:text="1 / 0" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/gameInfo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/gameInfo1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameTable" />
+    <TextView
+        android:id="@+id/gameInfo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/gameInfo2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameInfo1" />
+
+    <LinearLayout
+        android:id="@+id/actionsBtnLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gameInfo2"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="20dp">
+        <Button
+            android:id="@+id/actionABtn"
+            android:layout_width="wrap_content"
+            android:text="@string/action_a_btn"
+            android:width="150dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginRight="5dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/actionBBtn"
+            android:layout_width="wrap_content"
+            android:text="@string/action_b_btn"
+            android:width="150dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ResultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Result:"
+        app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/actionsBtnLayout"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteY="20dp" />
+    <LinearLayout
+        android:id="@+id/myChoosenActionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ResultText"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/you_choose"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionsBtnLayout"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action B"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionsBtnLayout"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opponentChoosenActionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myChoosenActionLayout"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opponent_choose"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionsBtnLayout"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action A"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/actionsBtnLayout"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/myObtainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/opponentChoosenActionLayout"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/you_obtain"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-2 points"
+            app:layout_constraintEnd_toStartOf="@+id/gameTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/opponentObtainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myObtainLayout"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="20dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/opponent_obtains"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-3 points"
+            android:gravity="center"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteY="20dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dismissBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dismiss_text"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/opponentObtainLayout"
+        android:layout_marginTop="20dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

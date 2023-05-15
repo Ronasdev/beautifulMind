@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/padding_start"
+    android:paddingEnd="@dimen/padding_end"
+    android:paddingTop="@dimen/padding_top"
+    android:paddingBottom="@dimen/padding_bottom"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:id="@+id/numberGamesPlayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number_game_played"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/scoreTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="20dp"
+        android:paddingTop="20dp"
+        tools:ignore="MissingConstraints">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="27sp"
+                android:height="70dp"
+                android:background="#188ff8"
+                android:text="@string/my_score_text" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="27sp"
+                android:height="70dp"
+                android:background="#3c55bc"
+                android:text="@string/opponent_score_text" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/myTotalScoreNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:height="40dp"
+                android:background="#ffe339"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/opponentTotalScoreNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:height="40dp"
+                android:gravity="center"
+                android:background="#eede93"
+                android:layout_weight="1"
+                android:text="0" />
+        </TableRow>
+
+    </TableLayout>
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GENERATE GAME!"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scoreTable"
+        android:layout_marginTop="40dp"
+        />
+    <TextView
+        android:id="@+id/selectOpponentTypeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Opponent Type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGenerate"
+        android:layout_marginTop="40dp"
+        />
+
+    <RadioGroup
+        android:id="@+id/opponentTypeBtnGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="20dp"
+        app:layout_constraintTop_toBottomOf="@id/selectOpponentTypeText"
+        >
+
+        <RadioButton
+            android:id="@+id/randomRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random"
+        />
+        <RadioButton
+            android:id="@+id/greedyRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Greedy"
+            />
+        <RadioButton
+            android:id="@+id/cautiousRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cautious"
+            />
+        <RadioButton
+            android:id="@+id/nashRadioBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nash"
+            />
+    </RadioGroup>
+    <Button
+        android:id="@+id/btnStartOver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="START OVER!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/opponentTypeBtnGroup"
+        android:layout_marginTop="40dp"
+        tools:layout_editor_absoluteY="357dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

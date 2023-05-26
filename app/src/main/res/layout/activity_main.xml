@@ -12,13 +12,27 @@
 
 
 
-    <TextView
-        android:id="@+id/numberGamesPlayed"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/number_game_played"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:gravity="left"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/number_game_played"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/numberGamesPlayed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <TableLayout
         android:id="@+id/scoreTable"
@@ -65,26 +79,26 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/myTotalScoreNumber"
+                android:id="@+id/myTotalScoreCell"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="30sp"
+                android:textSize="35sp"
                 android:gravity="center"
-                android:height="40dp"
+                android:height="45dp"
                 android:background="#ffe339"
                 android:text="0" />
 
             <TextView
-                android:id="@+id/opponentTotalScoreNumber"
+                android:id="@+id/opponentTotalScoreCell"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                android:textSize="30sp"
-                android:height="40dp"
+                android:textSize="35sp"
+                android:height="45dp"
                 android:gravity="center"
                 android:background="#eede93"
                 android:layout_weight="1"
@@ -122,6 +136,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="20dp"
         app:layout_constraintTop_toBottomOf="@id/selectOpponentTypeText"
+        android:paddingBottom="40dp"
         >
 
         <RadioButton
@@ -149,6 +164,17 @@
             android:text="Nash"
             />
     </RadioGroup>
+
+    <ImageView
+        android:id="@+id/nash_image"
+        android:layout_width="115dp"
+        android:layout_height="180dp"
+        android:layout_marginEnd="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/opponentTypeBtnGroup"
+        android:contentDescription=""
+        tools:layout_editor_absoluteY="331dp" />
+
     <Button
         android:id="@+id/btnStartOver"
         android:layout_width="wrap_content"
@@ -158,6 +184,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@id/opponentTypeBtnGroup"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         tools:layout_editor_absoluteY="357dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -101,7 +101,7 @@
                 android:background="#51fb01"
                 android:text="@string/a"  />
             <TextView
-                android:id="@+id/utility11"
+                android:id="@+id/utilityAA"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -111,7 +111,7 @@
                 android:text="-3 / 3" />
 
             <TextView
-                android:id="@+id/utility12"
+                android:id="@+id/utilityAB"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -136,18 +136,17 @@
                 android:background="#fda118"
                 android:text="@string/b"  />
             <TextView
-                android:id="@+id/utility21"
+                android:id="@+id/utilityBA"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:height="40dp"
-                android:background="#ffc8c8"
                 android:text="-2 / -3" />
 
             <TextView
-                android:id="@+id/utility22"
+                android:id="@+id/utilityBB"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -246,9 +245,10 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteY="20dp" />
         <TextView
+            android:id="@+id/myAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Action B"
+            android:text="Action _"
             app:layout_constraintEnd_toStartOf="@+id/gameTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -281,9 +281,10 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteY="20dp" />
         <TextView
+            android:id="@+id/opponentAction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Action A"
+            android:text="Action _"
             app:layout_constraintEnd_toStartOf="@+id/gameTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -315,9 +316,10 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteY="20dp" />
         <TextView
+            android:id="@+id/myPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-2 points"
+            android:text="_ points"
             app:layout_constraintEnd_toStartOf="@+id/gameTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -345,9 +347,10 @@
             android:textSize="18sp"
             tools:layout_editor_absoluteY="20dp" />
         <TextView
+            android:id="@+id/opponentPoint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-3 points"
+            android:text="_ points"
             android:gravity="center"
             android:textSize="18sp"
             tools:layout_editor_absoluteY="20dp" />

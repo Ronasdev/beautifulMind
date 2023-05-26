@@ -23,6 +23,8 @@ public class Game extends AppCompatActivity {
     private TextView utilityBA = null;
     private TextView utilityBB = null;
 
+    String[] matrixTable = new String[4];
+
     //buttons of different actions
     private Button aActionBtn = null;
     private Button bActionBtn = null;
@@ -45,6 +47,8 @@ public class Game extends AppCompatActivity {
 
     private Button dismissButton = null;
 
+    private int equilibriumNumber = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +62,6 @@ public class Game extends AppCompatActivity {
 
         initWidgets();
 
-        //Toast.makeText(getApplicationContext(),generateRandomUtilityMatrix(),Toast.LENGTH_SHORT).show();
         fillGameTable();
 
         aActionBtn.setOnClickListener(new View.OnClickListener() {
@@ -68,23 +71,25 @@ public class Game extends AppCompatActivity {
                 if(!opponentActionIsChoosed){
                     myAction = "A";
                     if(opponentType.equals("Nash")){
-                        String[] utilities = null;
-                        utilities[0] =  utilityAA.getText().toString();
-                        utilities[1] =  utilityAB.getText().toString();
-                        utilities[2] =  utilityBA.getText().toString();
-                        utilities[3] =  utilityBB.getText().toString();
 
-                        for (String utility : utilities) {
+                        for (String utility : matrixTable) {
                             String[] parts = utility.split("/");
-                            System.out.println(parts);
-                            /*if (parts[0].equals(parts[1])){
-                                Log.d("nash", "Equlibre de nash");
-                            }*/
+                            if (parts[0].trim().equals(parts[1].trim())){
+                                equilibriumNumber++;
+                            }
+                        }
+                        if (equilibriumNumber > 1){
+                            multipleEquilibriumToast();
+                        }else{
+                            opponentRandomAction();
                         }
 
+                    }else{
+                        opponentRandomAction();
                     }
-                    opponentRandomAction();
+
                 }
+
                 if (opponentActionIsChoosed && numberOfActionsButtonClicked == 2){
                     aActionBtn.setEnabled(false);
                     bActionBtn.setEnabled(false);
@@ -92,7 +97,6 @@ public class Game extends AppCompatActivity {
                     myChoosedAction.setText("Action "+myAction);
                     opponentChoosedAction.setText("Action "+opponentAction);
 
-                //    if (opponentType.equals("Random")){
                         String[] utility = null;
                         if (myAction.equals("A") ){
                             if (opponentAction.equals("A")){
@@ -101,28 +105,23 @@ public class Game extends AppCompatActivity {
                                 myObtain = utility[0].trim();
                                 opponentObtain = utility[1].trim();
 
-                                if (opponentType.equals("Nash")){
-                                    String equilibriumNash = "There is a unique Nash equilibrium in this game: \n" +
-                                            "My action: "+myAction +
-                                            "\nOpponent action: "+opponentAction;
-                                    Toast.makeText(getApplicationContext(),equilibriumNash,Toast.LENGTH_LONG).show();
-                                }
-
                             } else if(opponentAction.equals("B")){
                                 utilityAB.setBackgroundColor (getResources().getColor(R.color.OBTAIN_CELL_BG));
                                 utility = utilityAB.getText().toString().split("/");
                                 myObtain = utility[0].trim();
                                 opponentObtain = utility[1].trim();
-                                }
                             }
                         }
+
+                        uniqueEqulibriumToast();
+
+                    }
 
                     if (!myObtain.isEmpty() && !opponentObtain.isEmpty()){
                         myPoint.setText(myObtain+" points");
                         opponentPoint.setText(opponentObtain+" points");
                     }
 
-            //    }
             }
         });
 
@@ -132,7 +131,24 @@ public class Game extends AppCompatActivity {
                 numberOfActionsButtonClicked++;
                 if(!opponentActionIsChoosed){
                     myAction = "B";
-                    opponentRandomAction();
+
+                    if(opponentType.equals("Nash")){
+
+                        for (String utility : matrixTable) {
+                            String[] parts = utility.split("/");
+                            if (parts[0].trim().equals(parts[1].trim())){
+                                equilibriumNumber++;
+                            }
+                        }
+                        if (equilibriumNumber > 1){
+                            multipleEquilibriumToast();
+                        }else{
+                            opponentRandomAction();
+                        }
+
+                    }else{
+                        opponentRandomAction();
+                    }
                 }
                 if (opponentActionIsChoosed && numberOfActionsButtonClicked == 2){
                     aActionBtn.setEnabled(false);
@@ -141,7 +157,6 @@ public class Game extends AppCompatActivity {
                     myChoosedAction.setText("Action "+myAction);
                     opponentChoosedAction.setText("Action "+opponentAction);
 
-                   // if (opponentType.equals("Random")){
                         String[] utility = null;
                         if (myAction.equals("B") ){
                             if (opponentAction.equals("A")){
@@ -150,13 +165,6 @@ public class Game extends AppCompatActivity {
                                 myObtain = utility[0].trim();
                                 opponentObtain = utility[1].trim();
 
-                                if (opponentType.equals("Nash")){
-                                    String equilibriumNash = "There is a unique Nash equilibrium in this game: \n" +
-                                            "My action: "+myAction +
-                                            "\nOpponent action: "+opponentAction;
-                                    Toast.makeText(getApplicationContext(),equilibriumNash,Toast.LENGTH_LONG).show();
-                                }
-
                             } else if(opponentAction.equals("B")){
                                 utilityBB.setBackgroundColor(getResources().getColor(R.color.OBTAIN_CELL_BG));
                                 utility = utilityBB.getText().toString().split("/");
@@ -164,12 +172,12 @@ public class Game extends AppCompatActivity {
                                 opponentObtain = utility[1].trim();
                             }
                         }
-                //    }
+                    uniqueEqulibriumToast();
+                }
 
-                    if (!myObtain.isEmpty() && !opponentObtain.isEmpty()){
-                        myPoint.setText(myObtain+" points");
-                        opponentPoint.setText(opponentObtain+" points");
-                    }
+                if (!myObtain.isEmpty() && !opponentObtain.isEmpty()){
+                    myPoint.setText(myObtain+" points");
+                    opponentPoint.setText(opponentObtain+" points");
                 }
             }
         });
@@ -195,6 +203,29 @@ public class Game extends AppCompatActivity {
 
     }
 
+    //Display a unique nash equilibrium Toast
+    private void uniqueEqulibriumToast(){
+        if (!opponentAction.equals("_")){
+            if (opponentType.equals("Nash")){
+                String equilibriumNash = "There is a unique Nash equilibrium in this game: \n" +
+                        "My action: "+myAction +
+                        "\nOpponent action: "+opponentAction;
+                Toast.makeText(getApplicationContext(),equilibriumNash,Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    //Mutiple nash equilibrium setting and Toast
+    private void multipleEquilibriumToast(){
+        aActionBtn.setEnabled(false);
+        bActionBtn.setEnabled(false);
+
+        String equilibriumNash = "There are multiple Nash equilibrium in this game: \n" +
+                "Opponent can not choose action: \n" +
+                "Game can not be finished: ";
+        Toast.makeText(getApplicationContext(),equilibriumNash,Toast.LENGTH_SHORT).show();
+    }
+
     //To generate the utility matrix
     private String generateRandomUtilityMatrix(){
         Random r = new Random();
@@ -208,11 +239,11 @@ public class Game extends AppCompatActivity {
 
     // this function fill the utility matrix to each cell of table
     private void fillGameTable(){
-        String[] matrixTable = new String[4];
+        //String[] matrixTable = new String[4];
         TextView[] utilityCell = new TextView[4];
 
         String matrix =  generateRandomUtilityMatrix();
-        matrixTable[0] = matrix;
+        this.matrixTable[0] = matrix;
 
         for (int i = 1; i < 4; i++) {
              matrix =  generateRandomUtilityMatrix();
@@ -221,13 +252,13 @@ public class Game extends AppCompatActivity {
                          matrix = generateRandomUtilityMatrix();
                      }
                  }
-                 matrixTable[i] = matrix;
+                 this.matrixTable[i] = matrix;
         }
 
-        utilityCell[0] = utilityAA;
-        utilityCell[1] = utilityAB;
-        utilityCell[2] = utilityBA;
-        utilityCell[3] = utilityBB;
+        utilityCell[0] = this.utilityAA;
+        utilityCell[1] = this.utilityAB;
+        utilityCell[2] = this.utilityBA;
+        utilityCell[3] = this.utilityBB;
 
         for(int i = 0; i < 4; i++){
             utilityCell[i].setText(matrixTable[i]);

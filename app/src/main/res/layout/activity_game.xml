@@ -8,7 +8,7 @@
     android:paddingTop="@dimen/padding_top"
     android:paddingEnd="@dimen/padding_end"
     android:paddingBottom="@dimen/padding_bottom"
-    tools:context=".Game">
+    tools:context=".GameActivity">
 
     <TextView
         android:id="@+id/gameTitle"

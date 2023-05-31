@@ -3,9 +3,7 @@ package com.example.beautifulmind;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +11,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class Game extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
     private String opponentType = "";
     private final static int MIN_MATRIX = -5;
@@ -64,6 +62,7 @@ public class Game extends AppCompatActivity {
 
         fillGameTable();
 
+        //Action A button clicked
         aActionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +124,7 @@ public class Game extends AppCompatActivity {
             }
         });
 
+        //Action B button clicked
         bActionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -182,6 +182,7 @@ public class Game extends AppCompatActivity {
             }
         });
 
+        // Dismiss button clicked
         dismissButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

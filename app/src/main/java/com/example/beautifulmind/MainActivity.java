@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnGenerate = null;
 
     private TextView numberGamePlayedText = null;
-    //private int numberGamePlayed = 0;
     private TextView myTotalScoreCell = null;
     private TextView opponentTotalScoreCell = null;
     private Button btnStartOver = null;
@@ -40,54 +39,18 @@ public class MainActivity extends AppCompatActivity {
         //initialization of different widgets
         initWidget();
 
-        opponentTypeBtnGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
-                numberGamePlayedText.setText("0");
-                myTotalScoreCell.setText("0");
-                opponentTotalScoreCell.setText("0");
-
-                opponentTypeRadioBtnSelected = radioGroup.findViewById(checkedId);
-                if (radioGroup.indexOfChild(opponentTypeRadioBtnSelected) == 3){
-                    nashImage.setImageResource(R.drawable.john_forbes_nash);
-                }else {
-                    nashImage.setImageResource(0);
-                }
-            }
-        });
+        //Selecting radio button for opponent type choosing
+        opponentTypeBtnGroup.setOnCheckedChangeListener(opponentTypeSelectedLister);
 
         //clicking on generate button
-        btnGenerate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int checkedRadioBtnId = opponentTypeBtnGroup.getCheckedRadioButtonId();
-
-                if(checkedRadioBtnId == -1) {
-                    Toast.makeText(MainActivity.this, "Select an opponent type first!",
-                            Toast.LENGTH_LONG).show();
-                }else{
-                    String opponentType = opponentTypeRadioBtnSelected.getText().toString();
-
-                    Intent startGameIntent = new Intent(getApplicationContext(),Game.class);
-                    startGameIntent.putExtra("opponentType",opponentType);
-                    startActivityForResult(startGameIntent, GO_GAME_REQUEST_CODE);
-
-                }
-            }
-        });
+        btnGenerate.setOnClickListener(this.generateListener);
 
         //Clicking start over button
-        btnStartOver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberGamePlayedText.setText("0");
-                myTotalScoreCell.setText("0");
-                opponentTotalScoreCell.setText("0");
-            }
-        });
+        btnStartOver.setOnClickListener(this.startOverListener);
     }
 
+
+    //When we return from Game Activity to Main activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -106,6 +69,53 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //The listener for the Generate Button
+    private View.OnClickListener generateListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int checkedRadioBtnId = opponentTypeBtnGroup.getCheckedRadioButtonId();
+
+            if(checkedRadioBtnId == -1) {
+                Toast.makeText(MainActivity.this, "Select an opponent type first!",
+                        Toast.LENGTH_LONG).show();
+            }else{
+                String opponentType = opponentTypeRadioBtnSelected.getText().toString();
+
+                Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
+                startGameIntent.putExtra("opponentType",opponentType);
+                startActivityForResult(startGameIntent, GO_GAME_REQUEST_CODE);
+
+            }
+        }
+    };
+
+    //The listener for the Start Over Button
+    private View.OnClickListener startOverListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            numberGamePlayedText.setText("0");
+            myTotalScoreCell.setText("0");
+            opponentTotalScoreCell.setText("0");
+        }
+    };
+
+    //The lister of opponent type selecting
+    private RadioGroup.OnCheckedChangeListener opponentTypeSelectedLister   = new RadioGroup.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+            numberGamePlayedText.setText("0");
+            myTotalScoreCell.setText("0");
+            opponentTotalScoreCell.setText("0");
+
+            opponentTypeRadioBtnSelected = radioGroup.findViewById(checkedId);
+            if (radioGroup.indexOfChild(opponentTypeRadioBtnSelected) == 3){
+                nashImage.setImageResource(R.drawable.john_forbes_nash);
+            }else {
+                nashImage.setImageResource(0);
+            }
+        }
+    };
 
     //Initialize all widget of activity
     private void  initWidget(){
